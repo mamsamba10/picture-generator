@@ -1,22 +1,17 @@
-const galleryContainer = document.querySelector('.gallery-container')
-const randomButton = document.querySelector('.random-image')
+const galleryContainer = document.querySelector(".gallery-container");
+const randomButton = document.querySelector(".random-image");
+const image = document.querySelector("img");
 
+function getPhotos() {
+  let randomSeed = 100;
+  let randomSeedFloor = Math.floor(Math.random() * randomSeed);
 
-async function getPhotos(){
-    const photosUrl = 'https://picsum.photos/300'
-    const responseData = await fetch(photosUrl)
-    .then(res =>{
-        galleryContainer.innerHTML = `<img src="${res.url}" alt="random phtos"/>`
-     
-    })  
+  const photosUrl = `https://picsum.photos/seed/${randomSeedFloor}/300`;
+
+  image.src = photosUrl;
 }
 
-window.addEventListener('load', getPhotos)
-
-randomButton.addEventListener('click', (e)=>{
-    e.preventDefault()
-    getPhotos()
-})
-
-
-
+randomButton.addEventListener("click", (e) => {
+  e.preventDefault();
+  getPhotos();
+});
